@@ -15,15 +15,16 @@ const TripleCube = () => {
       1000
     );
 
-    // const handleResize = () => {
-    //   camera.aspect = window.innerWidth / window.innerHeight;
-    //   camera.updateProjectionMatrix();
-    //   renderer.setSize(window.innerWidth, window.innerHeight);
-    // };
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
 
     const renderer = new THREE.WebGLRenderer();
     cubeRef.current.appendChild(renderer.domElement);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    window.addEventListener('resize', handleResize, false);
+    handleResize();
 
     const geometry = new THREE.BoxGeometry(CUBE_DIM, CUBE_DIM, CUBE_DIM);
     const material = new THREE.MeshBasicMaterial({
